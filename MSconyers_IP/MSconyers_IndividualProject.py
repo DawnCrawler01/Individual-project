@@ -17,7 +17,7 @@ class App():  # Class for an instance of the application
         frame = tk.Frame(master, bg='#80c1ff', bd = 4)  #creates frame for the entry box and run button
         frame.place(relx = 0.5, rely = 0, relwidth=1, relheight=0.1, anchor='n')
 
-        self.button = tk.Button(frame, text="Run", font='helvetica', bg= 'gray', command=lambda:self.websiteCall(entry.get()))  # calls the websiteCall method that grabs the meta tags
+        self.button = tk.Button(frame, text="Run", font='helvetica', bg= 'gray', command=lambda:self.websiteCall(entry.get(), fileEntry.get()))  # calls the websiteCall method that grabs the meta tags
         self.button.place(relx = 0.7, relheight = 1, relwidth = 0.3)
 
         self.urlLabel = tk.Label(frame, text = "Enter URL here:", font = 'helvetica', bg = "#80c1ff", justify = 'left')  # description box
@@ -48,10 +48,13 @@ class App():  # Class for an instance of the application
         self.quitButton.place(relx = 0.9,rely = 0.1, relheight = 0.64, relwidth = 0.1)
 
         self.codeLabel = tk.Label(bottomFrame, text = "Status Code:", width = 10, height = 1,font='helvetica', bg = "#80c1ff")  # description box
-        self.codeLabel.place(relx = .001)
+        self.codeLabel.place(relx = .65)
 
         self.codeBox = tk.Text(bottomFrame, width = 5, height = 1, font='helvetica')  # displays the site codde status
-        self.codeBox.place(relx = 0.13)
+        self.codeBox.place(relx = 0.7)
+
+        fileEntry = tk.Entry(bottomFrame, font = 30)
+        fileEntry.place(relx = 0, relwidth = 0.05, relheight = 0.5)
 
         #self.infoButton = tk.Button(bottomFrame, text = "About", font='helvetica', bg = 'gray', command = self.openWin)  # opens a dialog box that gives basic instructions
         #self.infoButton.place(relx = .3, rely = 0.1, relheight = 0.64, relwidth = 0.1)
@@ -83,7 +86,7 @@ class App():  # Class for an instance of the application
 
 
 
-    def websiteCall(self, entry): #function call the website and scan it for meta tags
+    def websiteCall(self, entry, name): #function call the website and scan it for meta tags
 
         self.txtBox.delete('1.0','end') # clears the text box
 
@@ -93,20 +96,30 @@ class App():  # Class for an instance of the application
             soup = BeautifulSoup(response.text,'lxml')  #beautifulsoup sets the url info to text to scan through
             metatags = soup.find_all('meta') # puts all meta tags to a variable
 
+            fileName = name
+            file = open(fileName + ".txt","w")
+
             for x in metatags:  # prints the tags to the screen
                 self.txtBox.insert( 'end',str(x) + '\n')
+                file.write(str(x) + '\n')
+
+            file.close()
 
         except:
             self.txtBox.insert('end', "Improper website URL. Please input a correct URL.\nA complete url needs to be inlcuded. \nExample: https://examplesite.com/")  # outputs if an improper url or no url is inputed
 
-        self.codeGrab(url) # grabs the status code of the website
+        self.codeGrab(url, fileName) # grabs the status code of the website
 
 
-    def codeGrab(self, url):  # function to grab the http status code of the website
+    def codeGrab(self, url, name):  # function to grab the http status code of the website
 
         self.codeBox.delete('1.0','end') # clears the textbox
         code = urllib.request.urlopen(url).getcode()  # sets the status code to a variable
         self.codeBox.insert('end', code)  # outputs the status code to the text box
+        file = open(name + ".txt", "a+")
+        file.write("\n\nStatus code at time of running: "+str(code))
+        file.close()
+
 
 
 
