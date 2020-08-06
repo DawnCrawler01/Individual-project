@@ -53,8 +53,8 @@ class App():  # Class for an instance of the application
         self.codeBox = tk.Text(bottomFrame, width = 5, height = 1, font='helvetica')  # displays the site codde status
         self.codeBox.place(relx = 0.13)
 
-        self.infoButton = tk.Button(bottomFrame, text = "About", font='helvetica', bg = 'gray', command = self.openWin)  # opens a dialog box that gives basic instructions
-        self.infoButton.place(relx = .3, rely = 0.1, relheight = 0.64, relwidth = 0.1)
+        #self.infoButton = tk.Button(bottomFrame, text = "About", font='helvetica', bg = 'gray', command = self.openWin)  # opens a dialog box that gives basic instructions
+        #self.infoButton.place(relx = .3, rely = 0.1, relheight = 0.64, relwidth = 0.1)
 
 
     # def openWin(self): # function to hold dialog window
