@@ -120,21 +120,14 @@ class App():  # Class for an instance of the application
             # puts all meta tags to a variable
             metatags = soup.find_all('meta')
 
-            # fileName = name
-            # file = open(fileName, "w")
-            # file.write("These are the metatags for: " + str(url) + "\n\n")
             for x in metatags:  # prints the tags to the screen
                 self.txtBox.insert('end', str(x) + '\n')
-                # file.write(str(x) + '\n\n')
-
-            # file.close()
 
         except:
             # outputs if an improper url or no url is inputed
             self.txtBox.insert(
                 'end', "Improper website URL. Please input a correct URL.\nA complete url needs to be inlcuded. \nExample: https://examplesite.com/")
 
-        # self.codeGrab(url, fileName)  # grabs the status code of the website
 
     def codeGrab(self, url, name):  # function to grab the http status code of the website
 
