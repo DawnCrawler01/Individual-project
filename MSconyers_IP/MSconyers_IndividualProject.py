@@ -81,33 +81,6 @@ class App():  # Class for an instance of the application
                                   font='helvetica', bg="#80c1ff", justify='left')  # description box
         self.fileLabel.place(rely=0, relwidth=0.18, relheight=.5)
 
-        # self.infoButton = tk.Button(bottomFrame, text = "About", font='helvetica', bg = 'gray', command = self.openWin)  # opens a dialog box that gives basic instructions
-        # self.infoButton.place(relx = .3, rely = 0.1, relheight = 0.64, relwidth = 0.1)
-
-    # def openWin(self): # function to hold dialog window
-    #
-    #     global top
-    #     if top is not None:
-    #         top.destroy()
-    #
-    #     top = tk.Toplevel(root)  # set the window to be dependent on base application
-    #
-    #     cavas2 = tk.Canvas(top, height = 120, width = 365)  # sets the size of the window
-    #     cavas2.pack()
-    #     top.title('About') # sets the title for the dialog box
-    #
-    #     frame2 = tk.Frame(top, bg = '#80c1ff', bd = 5)  # sets frame that holds the dialog
-    #     frame2.place(relx = 0.5, relwidth = 1, relheight = .5, anchor = 'n')
-    #
-    #     self.label = tk.Label(frame2, text = "Welcome to the MetaGrabber!\n This application will grab the meta tags of any website you type in! \n Just type in the site and hit RUN!", justify = 'left', anchor = 'nw')
-    #     self.label.place(relheight = 0.99, relwidth = 1)  # dialog of basic instructions
-    #
-    #     frame2Lower = tk.Frame(top, bg='#80c1ff', bd = 5)  # holds exit button
-    #     frame2Lower.place(relx = 0.5, rely= 0.5, relwidth = 1, relheight = 0.5, anchor = 'n')
-    #
-    #     self.btn2 = tk.Button(frame2Lower, text = "close window", font='helvetica', bg = 'gray', command = top.destroy)  # closes the window and returns to the base application
-    #     self.btn2.place(relx = 0.21, rely = 0.1, relheight = 0.9, relwidth = 0.6)
-
     def websiteCall(self, entry):  # function call the website and scan it for meta tags
 
         self.txtBox.delete('1.0', 'end')  # clears the text box
@@ -159,5 +132,3 @@ root = tk.Tk()  # initializes tkinter
 b = App(root)  # creates an object for the application
 top = None
 root.mainloop()  # runs the application
-
-# test url: https://www.humblebundle.com/
